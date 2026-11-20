@@ -1,1 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101513">
+  <title>BotForge — Team Code Library</title>
+  <style>
+    :root{color-scheme:dark;--bg:#101513;--panel:#171e1b;--panel2:#1d2521;--line:#2b3630;--muted:#93a198;--text:#e7eee9;--green:#b7f36b;--mint:#69dfb1;--orange:#f5a66b;--purple:#c7a6ff;--blue:#8fc8ff;--red:#ff8585;--mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(ellipse at 75% -20%,rgba(105,223,177,.08),transparent 42%),var(--bg)}
+    .topbar{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(16,21,19,.88);gap:20px}.brand{display:flex;align-items:center;gap:12px;min-width:220px}.logo{height:34px;width:34px;border-radius:10px;background:var(--green);display:grid;place-items:center;color:#142015;font-size:19px;font-weight:900;box-shadow:0 0 24px #b7f36b24}.brand-name{font-weight:750;letter-spacing:-.4px}.brand-sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.08em;text-transform:uppercase}.top-actions{display:flex;align-items:center;gap:10px}.team-label{border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:#c2cec6;font-size:12px;display:flex;gap:8px;align-items:center}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#304137;color:var(--green);font-size:11px;font-weight:700}
+    .layout{display:grid;grid-template-columns:280px minmax(0,1fr);flex:1;min-height:calc(100vh - 68px)}.sidebar{border-right:1px solid var(--line);background:#121815;padding:22px 15px;display:flex;flex-direction:column;min-height:0}.side-heading{display:flex;align-items:center;justify-content:space-between;padding:0 9px;margin:2px 0 15px}.eyebrow{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#7f9086;font-weight:750}.icon-btn{width:30px;height:30px;border:1px solid var(--line);border-radius:8px;background:#1a211d;color:#b9c7bd;font-size:17px;line-height:1}.icon-btn:hover,.secondary:hover{border-color:#526357;background:#212a24}.search{margin:0 5px 13px;position:relative}.search input{width:100%;height:37px;background:#171e1a;border:1px solid var(--line);border-radius:8px;color:var(--text);padding:0 12px 0 34px;outline:none;font-size:12px}.search input:focus{border-color:#6e9651}.search:before{content:"⌕";position:absolute;left:12px;top:6px;color:#819087;font-size:20px}.file-list{overflow:auto;flex:1}.file-row{border:1px solid transparent;border-radius:9px;padding:10px 10px;margin:3px 0;display:flex;align-items:center;gap:10px;cursor:pointer}.file-row:hover{background:#1a211d}.file-row.active{background:#202b22;border-color:#344834}.java-icon{width:28px;height:31px;border-radius:6px;background:#34291f;color:#f5a66b;display:grid;place-items:center;font-size:9px;font-weight:800;font-family:var(--mono);flex:none}.file-name{font-size:12px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.file-meta{font-size:10px;color:#85938a;margin-top:4px}.empty-list{color:var(--muted);font-size:12px;line-height:1.6;padding:12px}.sidebar-bottom{border-top:1px solid var(--line);padding:15px 8px 0;margin-top:12px}.storage-note{font-size:10px;color:#829087;line-height:1.5}.storage-note b{color:#bdc9c0;font-weight:600}.main{min-width:0;padding:27px 30px 34px;display:flex;flex-direction:column;max-width:1600px;width:100%;margin:0 auto}.welcome{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}.welcome h1{font-size:23px;margin:0 0 7px;letter-spacing:-.6px}.welcome p{color:var(--muted);font-size:12px;margin:0}.action-row{display:flex;gap:8px;flex-wrap:wrap}.primary,.secondary{height:36px;border-radius:8px;padding:0 13px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}.primary{background:var(--green);color:#142015;border:1px solid var(--green)}.primary:hover{background:#c9ff8d}.secondary{background:#1a211d;border:1px solid var(--line);color:#d8e2db}.secondary .plus{font-size:16px;line-height:0}.editor-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#141a17;box-shadow:0 12px 50px #00000020;display:flex;flex-direction:column;min-height:480px;flex:1}.editor-top{height:55px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid var(--line);gap:15px}.tabs{display:flex;align-items:center;gap:10px;min-width:0}.tab{height:55px;border-bottom:2px solid var(--green);display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;padding:0 7px;max-width:340px;min-width:0}.tab span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tab-icon{color:var(--orange);font-family:var(--mono);font-size:10px}.saved-status{font-size:10px;color:#91a096;font-weight:500;white-space:nowrap}.editor-tools{display:flex;align-items:center;gap:7px}.small-btn{border:1px solid var(--line);background:#1a211d;color:#b9c7bd;border-radius:6px;padding:6px 9px;font-size:10px}.small-btn:hover{color:white;border-color:#516151}.editor-area{display:grid;grid-template-columns:54px minmax(0,1fr);flex:1;min-height:370px;overflow:hidden;position:relative;background:#141a17}.gutter{font-family:var(--mono);font-size:12px;line-height:22px;text-align:right;padding:17px 13px 20px 0;color:#58665d;background:#141a17;user-select:none;overflow:hidden;white-space:pre}.code-wrap{position:relative;min-width:0;overflow:hidden}.highlight,.code-input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:17px 18px 22px;font:12px/22px var(--mono);letter-spacing:0;tab-size:4;white-space:pre;overflow:auto;word-wrap:normal}.highlight{pointer-events:none;color:#d4ded7}.highlight code{font:inherit}.code-input{resize:none;border:0;outline:0;background:transparent;color:transparent;-webkit-text-fill-color:transparent;caret-color:#efffe1;z-index:2;overflow:auto}.code-input::selection{background:#9ee76955;-webkit-text-fill-color:transparent}.code-input:focus{outline:none}.tok-key{color:#c7a6ff}.tok-type{color:#8fc8ff}.tok-string{color:#a7d890}.tok-comment{color:#829087;font-style:italic}.tok-number{color:#f5a66b}.tok-annotation{color:#f2c879}.editor-footer{height:34px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#849188;font-size:10px}.status-left,.status-right{display:flex;gap:15px;align-items:center}.language{display:flex;align-items:center;gap:6px;color:#c4d1c8}.language:before{content:"";width:7px;height:7px;border-radius:50%;background:#eda55f}.info-strip{margin-top:12px;color:#829087;font-size:10px;line-height:1.5}.info-strip strong{color:#bac7be;font-weight:600}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);padding:10px 15px;border:1px solid #3c5742;background:#202d23;color:#dff5dd;border-radius:9px;font-size:12px;opacity:0;transition:.2s;pointer-events:none;z-index:5;box-shadow:0 8px 30px #0008}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.mobile-menu{display:none}
+    @media(max-width:850px){.layout{grid-template-columns:230px minmax(0,1fr)}.main{padding:22px 18px}.welcome{flex-direction:column}.action-row{width:100%}.topbar{padding:0 18px}}
+    @media(max-width:620px){.topbar{height:58px;padding:0 13px}.brand{min-width:0}.brand-sub,.team-label{display:none}.layout{display:block;min-height:calc(100vh - 58px)}.sidebar{display:none;position:absolute;z-index:4;top:58px;bottom:0;left:0;width:min(300px,85vw);box-shadow:15px 0 40px #0008}.sidebar.open{display:flex}.mobile-menu{display:inline-grid}.main{padding:20px 12px}.welcome h1{font-size:21px}.editor-card{min-height:62vh}.editor-top{padding:0 9px}.editor-tools{gap:4px}.small-btn{padding:6px}.saved-status{display:none}.tab{max-width:160px}.editor-area{grid-template-columns:42px minmax(0,1fr)}.gutter{padding-right:10px;font-size:11px}.highlight,.code-input{padding-left:12px;padding-right:10px;font-size:11px}.editor-footer{padding:0 8px}.status-left,.status-right{gap:8px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><button class="icon-btn mobile-menu" id="menuToggle" aria-label="Toggle code library">☰</button><div class="logo">⌘</div><div><div class="brand-name">BotForge</div><div class="brand-sub">FTC team code library</div></div></div>
+      <div class="top-actions"><div class="team-label"><span class="dot"></span> Shadowbots workspace</div><div class="avatar" title="Team workspace">SB</div></div>
+    </header>
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="side-heading"><span class="eyebrow">Team library</span><button class="icon-btn" id="newButton" title="New Java file" aria-label="New Java file">+</button></div>
+        <label class="search"><input id="searchInput" type="search" placeholder="Find a file..." aria-label="Search saved files"></label>
+        <div class="file-list" id="fileList"></div>
+        <div class="sidebar-bottom"><div class="storage-note"><b>Workspace storage</b><br>Files are saved in this browser. Import or export <code>.java</code> files to share with your team.</div></div>
+      </aside>
+      <main class="main">
+        <div class="welcome">
+          <div><h1>Your team's code, in one place.</h1><p>Write, save, and share FTC Java code with the Shadowbots.</p></div>
+          <div class="action-row"><button class="secondary" id="importButton">↑ &nbsp;Import .java</button><input id="fileInput" class="hidden" type="file" accept=".java,text/x-java-source" multiple><button class="secondary" id="shareButton">↗ &nbsp;Share</button><button class="primary" id="saveButton">Save file</button></div>
+        </div>
+        <section class="editor-card" aria-label="Java code editor">
+          <div class="editor-top"><div class="tabs"><div class="tab"><span class="tab-icon">☕</span><span id="tabName">NewOpMode.java</span></div><span class="saved-status" id="saveStatus">Unsaved changes</span></div><div class="editor-tools"><button class="small-btn" id="downloadButton" title="Download current file">↓ .java</button><button class="small-btn" id="deleteButton" title="Delete current file">Delete</button></div></div>
+          <div class="editor-area" id="editorArea"><div class="gutter" id="lineNumbers" aria-hidden="true">1</div><div class="code-wrap"><pre class="highlight" id="highlight" aria-hidden="true"><code id="highlightCode"></code></pre><textarea class="code-input" id="codeInput" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Java code editor" wrap="off"></textarea></div></div>
+          <div class="editor-footer"><div class="status-left"><span class="language">Java</span><span id="lineCount">1 line</span></div><div class="status-right"><span id="cursorPosition">Ln 1, Col 1</span><span>UTF-8</span></div></div>
+        </section>
+        <div class="info-strip"><strong>Java-only workspace.</strong> Paste Java snippets or import <code>.java</code> files. Share creates a link for the current file; saved files stay in this browser unless you export them.</div>
+      </main>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  const STORAGE_KEY = 'botforge.shadowbots.files.v1';
+  const seedCode = `package org.firstinspires.ftc.teamcode;\n\nimport com.qualcomm.robotcore.eventloop.opmode.Autonomous;\nimport com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;\n\n@Autonomous(name = "Starter Auto", group = "BotForge")\npublic class StarterAuto extends LinearOpMode {\n\n    @Override\n    public void runOpMode() {\n        telemetry.addLine("BotForge is ready");\n        telemetry.update();\n\n        waitForStart();\n        if (isStopRequested()) return;\n\n        // Add your team's autonomous steps here.\n        telemetry.addData("Status", "Running");\n        telemetry.update();\n    }\n}`;
+  const $ = id => document.getElementById(id);
+  const editor = $('codeInput');
+  let files = loadFiles();
+  let currentId = files[0]?.id || null;
+  let dirty = false;
+  let toastTimer;
 
+  function loadFiles() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (Array.isArray(saved)) return saved.filter(f => f && typeof f.code === 'string' && typeof f.name === 'string');
+    } catch (_) {}
+    const starter = {id: makeId(), name:'StarterAuto.java', category:'FTC OpMode', code:seedCode, updatedAt:Date.now()};
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify([starter])); } catch (_) {}
+    return [starter];
+  }
+  function makeId(){return (window.crypto?.randomUUID?.() || `id-${Date.now()}-${Math.random().toString(36).slice(2)}`)}
+  function current(){return files.find(f=>f.id===currentId)}
+  function persist(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(files));return true}catch(_){toast('Browser storage is full. Download your files to keep a copy.');return false}}
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function highlightJava(source){
+    const token = /(\/\*[\s\S]*?\*\/|\/\/[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|@[A-Za-z_$][\w$]*|\b\d+(?:\.\d+)?\b|\b(?:package|import|public|protected|private|static|final|abstract|class|interface|enum|extends|implements|void|new|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|throws|this|super|synchronized|volatile|transient|native|instanceof|assert|true|false|null|byte|short|int|long|float|double|char|boolean)\b|\b(?:String|Object|Class|System|Math|Override|LinearOpMode|OpMode|DcMotor|Servo|Telemetry)\b)/g;
+    let out='', last=0, m;
+    while((m=token.exec(source))){out+=esc(source.slice(last,m.index));const t=m[0];let cls='';if(t.startsWith('//')||t.startsWith('/*'))cls='tok-comment';else if(t[0]==='"'||t[0]==="'")cls='tok-string';else if(t[0]==='@')cls='tok-annotation';else if(/^\d/.test(t))cls='tok-number';else if(/^(String|Object|Class|System|Math|Override|LinearOpMode|OpMode|DcMotor|Servo|Telemetry)$/.test(t))cls='tok-type';else cls='tok-key';out+=`<span class="${cls}">${esc(t)}</span>`;last=token.lastIndex}
+    out+=esc(source.slice(last));return out+' ';
+  }
+  function renderEditor(){
+    const f=current(); $('tabName').textContent=f?.name || 'NewFile.java';
+    if(f && !dirty) editor.value=f.code;
+    $('highlightCode').innerHTML=highlightJava(editor.value);
+    const lines=Math.max(1,editor.value.split('\n').length);$('lineNumbers').textContent=Array.from({length:lines},(_,i)=>i+1).join('\n');
+    $('lineCount').textContent=`${lines} ${lines===1?'line':'lines'}`;
+    const before=editor.value.slice(0,editor.selectionStart), row=before.split('\n');$('cursorPosition').textContent=`Ln ${row.length}, Col ${row[row.length-1].length+1}`;
+    $('saveStatus').textContent=dirty?'Unsaved changes':'All changes saved';$('saveStatus').style.color=dirty?'#f5c27b':'#91a096';
+    $('deleteButton').disabled=!f;$('deleteButton').style.opacity=f?'1':'.45';
+    syncScroll();renderList();
+  }
+  function syncScroll(){const h=$('highlight'),g=$('lineNumbers');h.scrollTop=editor.scrollTop;h.scrollLeft=editor.scrollLeft;g.scrollTop=editor.scrollTop}
+  function renderList(){const q=$('searchInput').value.trim().toLowerCase();const visible=files.filter(f=>f.name.toLowerCase().includes(q)||(f.category||'').toLowerCase().includes(q));$('fileList').innerHTML=visible.length?visible.map(f=>`<div class="file-row ${f.id===currentId?'active':''}" data-id="${esc(f.id)}"><div class="java-icon">JAVA</div><div style="min-width:0"><div class="file-name">${esc(f.name)}</div><div class="file-meta">${esc(f.category||'Team code')} · ${new Date(f.updatedAt||Date.now()).toLocaleDateString()}</div></div></div>`).join(''):'<div class="empty-list">No matching files yet.<br>Import a Java file or create one with +.</div>';document.querySelectorAll('.file-row').forEach(el=>el.addEventListener('click',()=>selectFile(el.dataset.id)))}
+  function selectFile(id){if(dirty&&!confirm('Discard unsaved changes and switch files?'))return;currentId=id;dirty=false;$('sidebar').classList.remove('open');renderEditor();}
+  function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2800)}
+  function isJavaCode(code){
+    const clean=code.replace(/\/\*[\s\S]*?\*\//g,' ').replace(/\/\/[^\n]*/g,' ').replace(/"(?:\\.|[^"\\])*"/g,'""').replace(/'(?:\\.|[^'\\])*'/g,"''");
+    if(!clean.trim())return false;
+    // Reject prose/plain text: Java source must contain recognizable Java syntax or declarations.
+    if(!/(\b(class|interface|enum|record|package|import|public|private|protected|static|void|return|new|if|for|while|switch|extends|implements)\b|@[A-Za-z_$][\w$]*|;|\{)/.test(clean))return false;
+    const pairs={')':'(',']':'[','}':'{'},stack=[];for(const ch of clean){if('([{'.includes(ch))stack.push(ch);else if(pairs[ch]){if(stack.pop()!==pairs[ch])return false}}
+    return stack.length===0;
+  }
+  function saveFile(){
+    const code=editor.value;if(!isJavaCode(code)){toast('This does not look like Java source. Add Java syntax before saving.');return}
+    let f=current();if(!f){f={id:makeId(),name:'NewFile.java',category:'Team code',code:'',updatedAt:Date.now()};files.unshift(f);currentId=f.id}
+    f.code=code;f.updatedAt=Date.now();dirty=false;if(persist())toast(`${f.name} saved to this browser.`);renderEditor();
+  }
+  function createFile(){if(dirty&&!confirm('Discard unsaved changes and create a new file?'))return;const name=prompt('Name your Java file','NewOpMode.java');if(name===null)return;let safe=name.trim().replace(/[^\w.-]/g,'_').replace(/\.java$/i,'');if(!safe)safe='NewOpMode';const f={id:makeId(),name:safe+'.java',category:'FTC OpMode',code:'package org.firstinspires.ftc.teamcode;\n\npublic class '+safe.replace(/[^A-Za-z0-9_$]/g,'')+' {\n\n    // Add your Java code here.\n\n}',updatedAt:Date.now()};files.unshift(f);currentId=f.id;dirty=false;persist();renderEditor();editor.focus()}
+  function downloadFile(){const f=current();if(!f){toast('Save a Java file first.');return}const blob=new Blob([editor.value],{type:'text/x-java-source;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=f.name;a.click();URL.revokeObjectURL(a.href);toast('Downloaded '+f.name)}
+  function shareFile(){const f=current();if(!f){toast('Save a Java file before sharing.');return}const packed=btoa(unescape(encodeURIComponent(JSON.stringify({name:f.name,code:editor.value}))));const url=`${location.href.split('#')[0]}#share=${packed}`;if(navigator.clipboard?.writeText){navigator.clipboard.writeText(url).then(()=>toast('Share link copied. Anyone with it can import this file.')).catch(()=>prompt('Copy this share link:',url))}else prompt('Copy this share link:',url)}
+  function receiveShared(){if(!location.hash.startsWith('#share='))return;try{const payload=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(7)))));if(!payload||typeof payload.name!=='string'||typeof payload.code!=='string'||!payload.name.toLowerCase().endsWith('.java')||!isJavaCode(payload.code))throw Error();if(confirm(`Import shared Java file “${payload.name}” into your library?`)){const name=payload.name.split(/[\\/]/).pop();const f={id:makeId(),name,category:'Shared code',code:payload.code,updatedAt:Date.now()};files.unshift(f);currentId=f.id;dirty=false;persist();renderEditor();toast('Shared Java file imported.')}history.replaceState(null,'',location.pathname+location.search)}catch(_){toast('That share link is invalid or does not contain Java code.');history.replaceState(null,'',location.pathname+location.search)}}
+  function deleteFile(){const f=current();if(!f)return;if(!confirm(`Delete ${f.name} from this browser?`))return;files=files.filter(x=>x.id!==f.id);currentId=files[0]?.id||null;dirty=false;editor.value=current()?.code||'';persist();renderEditor();toast('File deleted.')}
+  async function importFiles(list){for(const file of list){if(!file.name.toLowerCase().endsWith('.java')){toast(`${file.name}: only .java files can be imported.`);continue}try{const code=await file.text();if(!isJavaCode(code)){toast(`${file.name}: content does not look like Java source.`);continue}const f={id:makeId(),name:file.name.split(/[\\/]/).pop(),category:'Imported Java',code,updatedAt:Date.now()};files.unshift(f);currentId=f.id;dirty=false;persist();renderEditor();toast(`${f.name} imported.`)}catch(_){toast(`Could not read ${file.name}.`)}}$('fileInput').value=''}
+  editor.addEventListener('input',()=>{dirty=true;$('highlightCode').innerHTML=highlightJava(editor.value);const lines=Math.max(1,editor.value.split('\n').length);$('lineNumbers').textContent=Array.from({length:lines},(_,i)=>i+1).join('\n');$('lineCount').textContent=`${lines} ${lines===1?'line':'lines'}`;$('saveStatus').textContent='Unsaved changes';$('saveStatus').style.color='#f5c27b'});
+  editor.addEventListener('scroll',syncScroll);editor.addEventListener('keyup',()=>{$('cursorPosition').textContent=`Ln ${editor.value.slice(0,editor.selectionStart).split('\n').length}, Col ${editor.value.slice(0,editor.selectionStart).split('\n').pop().length+1}`});editor.addEventListener('click',()=>editor.dispatchEvent(new Event('keyup')));
+  $('saveButton').addEventListener('click',saveFile);$('newButton').addEventListener('click',createFile);$('importButton').addEventListener('click',()=>$('fileInput').click());$('fileInput').addEventListener('change',e=>importFiles([...e.target.files]));$('downloadButton').addEventListener('click',downloadFile);$('shareButton').addEventListener('click',shareFile);$('deleteButton').addEventListener('click',deleteFile);$('searchInput').addEventListener('input',renderList);$('menuToggle').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+  renderEditor();receiveShared();
+})();
+</script>
+</body>
+</html>
