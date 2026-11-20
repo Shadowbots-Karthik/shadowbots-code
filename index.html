@@ -170,7 +170,7 @@ input.search{
  </div>
  <div class="header-right">
   <span class="status">● LOCAL REPOSITORY</span>
-  <button class="btn" onclick="upload.click()">↑ Upload</button>
+  <button class="btn" onclick="document.getElementById('upload').click()">↑ Upload</button>
  </div>
 </header>
 
@@ -356,13 +356,40 @@ function saveFile() {
 }
 
 function newFile() {
- let name=prompt("Enter a Java filename (without extension):");
- if(!name)return;
- name=name.trim().replace(/\.java$/i,"");
- if(!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name)){
-  notify("Please enter a valid Java filename.");
-  return;
- }
+    const name = prompt("Enter your new Java filename:");
+
+    if (!name || !name.trim()) return;
+
+    let filename = name.trim();
+
+    if (!filename.endsWith(".java")) {
+        filename += ".java";
+    }
+
+    if (!/^[A-Za-z_$][A-Za-z0-9_$]*\.java$/.test(filename)) {
+        alert("Please enter a valid Java filename.");
+        return;
+    }
+
+    if (files[filename]) {
+        alert("This file already exists!");
+        return;
+    }
+
+    const className = filename.replace(".java", "");
+
+    files[filename] =
+`package org.firstinspires.ftc.teamcode;
+
+public class ${className} {
+
+}
+`;
+
+    persist();
+    openFile(filename);
+    notify("Java file created successfully!");
+}
  name+=".java";
  if(files[name]){
   notify("That file already exists.");
